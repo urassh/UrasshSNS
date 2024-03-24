@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "79098854149",
+    "project_id": "urasshsns",
+    "storage_bucket": "urasshsns.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:79098854149:android:e34e37ae4637f52fbb556c",
+        "android_client_info": {
+          "package_name": "com.example.urassh_sns"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2HesGCZANl3JjRH_KD2hjyUk7BENSDgA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
