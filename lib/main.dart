@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:urassh_sns/main_viewmodel.dart';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:urassh_sns/view/auth/signup/signup_page.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -31,39 +31,20 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends ConsumerWidget {
+class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key, required this.title});
 
   final String title;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final mainViewModel = ref.watch(mainViewModelProvider);
+  Widget build(BuildContext context) {
 
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text("Urassh SNS"),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '${mainViewModel.counter}',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async => await mainViewModel.registerLoginUser(),
-        tooltip: 'Increment',
-        child: const Text("Resister User"),
-      ),
+      body: const SignupPage(),
     );
   }
 }
