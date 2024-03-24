@@ -60,9 +60,9 @@ class MyHomePage extends ConsumerWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => mainViewModel.incrementCounter(),
+        onPressed: () async => await mainViewModel.registerLoginUser(),
         tooltip: 'Increment',
-        child: const Icon(Icons.add),
+        child: const Text("Resister User"),
       ),
     );
   }
