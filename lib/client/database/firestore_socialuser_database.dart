@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:urassh_sns/client/database/database.dart';
+import 'package:urassh_sns/exception/NotFoundedDataException.dart';
 import 'package:urassh_sns/exception/insert_database_exception.dart';
 
 final firestoreSocialUserDatabaseProvider = Provider((ref) => FirestoreSocialUserDatabase());
@@ -44,7 +45,7 @@ class FirestoreSocialUserDatabase implements Database {
         .get();
 
     if(query.docs.isEmpty) {
-      return {};
+      throw NotFoundedDataException("id: $id データが見つかりませんでした。");
     }
 
     return query.docs[0].data();
