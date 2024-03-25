@@ -1,8 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:uuid/uuid.dart';
 
-part 'login_user.freezed.dart';
-part 'login_user.g.dart';
+part 'generated/login_user.freezed.dart';
+part 'generated/login_user.g.dart';
 
 @freezed
 abstract class LoginUser with _$LoginUser {
