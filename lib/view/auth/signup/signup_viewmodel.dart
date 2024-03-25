@@ -45,6 +45,18 @@ class SignupViewModel extends HasEventStateNotifier<SignupState> {
     state = state.copyWith(events: state.events + [const SignupPageEvent.hideProgress()]);
   }
 
+  void onEmailChanged({
+    required String email,
+  }) {
+    state = state.copyWith(email: email);
+  }
+
+  void onPasswordChanged({
+    required String password,
+  }) {
+    state = state.copyWith(password: password);
+  }
+
   void flashMessage(BuildContext context, String message) {
     final snackBar = SnackBar(
       content: Text(message),
