@@ -1,5 +1,6 @@
-import 'package:urassh_sns/entity/user/login_user.dart';
+import 'package:urassh_sns/entity/user/social_user.dart';
 
 abstract class UserRepository {
-  registerLoginUser(LoginUser loginUser);
+  registerUser(String uid);
+  Future<SocialUser> getUser(String uid);
 }

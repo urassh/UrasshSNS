@@ -4,19 +4,19 @@ import 'package:urassh_sns/repository/interface/auth_repository.dart';
 import 'package:urassh_sns/repository/interface/user_repository.dart';
 import 'package:urassh_sns/repository/user/user_repository_impl.dart';
 
-final userRepositoryDIProvider = Provider((ref) =>
-  UserRepositoryDI(
+final repositoryDIProvider = Provider((ref) =>
+  RepositoryDI(
     userRepository: ref.read(userRepositoryImplProvider),
     authRepository: ref.read(authRepositoryImplProvider),
   )
 );
 
 
-class UserRepositoryDI {
+class RepositoryDI {
   final UserRepository userRepository;
   final AuthRepository authRepository;
 
-  UserRepositoryDI({
+  RepositoryDI({
     required this.userRepository,
     required this.authRepository,
   });

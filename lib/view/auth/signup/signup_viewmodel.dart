@@ -1,28 +1,48 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:urassh_sns/entity/user/login_user.dart';
-import 'package:urassh_sns/usecase/user/register_login_user_usecase.dart';
+import 'package:urassh_sns/entity/user/social_user.dart';
+import 'package:urassh_sns/exception/insert_database_exception.dart';
+import 'package:urassh_sns/exception/signup_auth_exception.dart';
+import 'package:urassh_sns/usecase/user/get_current_user_usecase.dart';
+import 'package:urassh_sns/usecase/user/signup_usecase.dart';
+import 'package:urassh_sns/util/event.dart';
+import 'package:urassh_sns/util/state_notifier.dart';
+import 'package:urassh_sns/view/auth/signup/signup_events.dart';
+import 'package:urassh_sns/view/auth/signup/signup_state.dart';
 
-final signupViewModelProvider = Provider((ref) => SignupViewModel(
-  ref.read(registerLoginUserUseCaseProvider),
-));
+final signupViewModelProvider = StateNotifierProvider.autoDispose<SignupViewModel, SignupState>((ref) => SignupViewModel(
+  const SignupState(),
+  ref.read(signupUseCaseProvider),
+  ref.read(getCurrentUserUsecaseProvider)));
 
-class SignupViewModel {
-  String stateText = "not...";
+class SignupViewModel extends HasEventStateNotifier<SignupState> {
+  final SignupUserUseCase _signupUserUseCase;
+  final GetCurrentUserUseCase _getCurrentUserUseCase;
 
-  final RegisterLoginUserUseCase registerLoginUserUseCase;
-  SignupViewModel(this.registerLoginUserUseCase);
+  SignupViewModel(super.state, this._signupUserUseCase, this._getCurrentUserUseCase);
 
-  Future<void> registerLoginUser() async {
+  void onSignupButtonClicked() async {
+    state = state.copyWith(events: state.events + [const SignupPageEvent.showProgress()]);
+
     final LoginUser registerUser = LoginUser.defaultUID(
-        username: "sample user",
-        email: "sample@example.com",
+        email: "urassh@example.com",
         password: "password"
     );
 
-    await registerLoginUserUseCase.execute(registerUser);
-    stateText = "${registerUser.username} was registered!";
+    try {
+      await _signupUserUseCase.execute(registerUser);
+      final SocialUser? user = await _getCurrentUserUseCase.execute();
+      state = state.copyWith(events: state.events + [SignupPageEvent.complete(user!)]);
+    } on InsertDatabaseException catch (e) {
+      state = state.copyWith(events: state.events + [SignupPageEvent.failed(e)]);
+    } on SignupAuthException catch (e) {
+      state = state.copyWith(events: state.events + [SignupPageEvent.failed(e)]);
+    } catch (e) {
+      state = state.copyWith(events: state.events + [SignupPageEvent.failed(Exception(e))]);
+    }
+
+    state = state.copyWith(events: state.events + [const SignupPageEvent.hideProgress()]);
   }
 
   void flashMessage(BuildContext context, String message) {
@@ -31,5 +51,10 @@ class SignupViewModel {
     );
 
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
+  @override
+  void onConsumeEvent() {
+    state = state.copyWith(events: state.consumeEvent());
   }
 }

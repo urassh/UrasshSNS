@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of '../login_user.dart';
+part of '../signup_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,33 +14,30 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-LoginUser _$LoginUserFromJson(Map<String, dynamic> json) {
-  return _LoginUser.fromJson(json);
-}
-
 /// @nodoc
-mixin _$LoginUser {
+mixin _$SignupState {
   String get email => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
+  List<SignupPageEvent> get events => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $LoginUserCopyWith<LoginUser> get copyWith =>
+  $SignupStateCopyWith<SignupState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $LoginUserCopyWith<$Res> {
-  factory $LoginUserCopyWith(LoginUser value, $Res Function(LoginUser) then) =
-      _$LoginUserCopyWithImpl<$Res, LoginUser>;
+abstract class $SignupStateCopyWith<$Res> {
+  factory $SignupStateCopyWith(
+          SignupState value, $Res Function(SignupState) then) =
+      _$SignupStateCopyWithImpl<$Res, SignupState>;
   @useResult
-  $Res call({String email, String password});
+  $Res call({String email, String password, List<SignupPageEvent> events});
 }
 
 /// @nodoc
-class _$LoginUserCopyWithImpl<$Res, $Val extends LoginUser>
-    implements $LoginUserCopyWith<$Res> {
-  _$LoginUserCopyWithImpl(this._value, this._then);
+class _$SignupStateCopyWithImpl<$Res, $Val extends SignupState>
+    implements $SignupStateCopyWith<$Res> {
+  _$SignupStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -52,6 +49,7 @@ class _$LoginUserCopyWithImpl<$Res, $Val extends LoginUser>
   $Res call({
     Object? email = null,
     Object? password = null,
+    Object? events = null,
   }) {
     return _then(_value.copyWith(
       email: null == email
@@ -62,27 +60,31 @@ class _$LoginUserCopyWithImpl<$Res, $Val extends LoginUser>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
+      events: null == events
+          ? _value.events
+          : events // ignore: cast_nullable_to_non_nullable
+              as List<SignupPageEvent>,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$LoginUserImplCopyWith<$Res>
-    implements $LoginUserCopyWith<$Res> {
-  factory _$$LoginUserImplCopyWith(
-          _$LoginUserImpl value, $Res Function(_$LoginUserImpl) then) =
-      __$$LoginUserImplCopyWithImpl<$Res>;
+abstract class _$$SignupStateImplCopyWith<$Res>
+    implements $SignupStateCopyWith<$Res> {
+  factory _$$SignupStateImplCopyWith(
+          _$SignupStateImpl value, $Res Function(_$SignupStateImpl) then) =
+      __$$SignupStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String email, String password});
+  $Res call({String email, String password, List<SignupPageEvent> events});
 }
 
 /// @nodoc
-class __$$LoginUserImplCopyWithImpl<$Res>
-    extends _$LoginUserCopyWithImpl<$Res, _$LoginUserImpl>
-    implements _$$LoginUserImplCopyWith<$Res> {
-  __$$LoginUserImplCopyWithImpl(
-      _$LoginUserImpl _value, $Res Function(_$LoginUserImpl) _then)
+class __$$SignupStateImplCopyWithImpl<$Res>
+    extends _$SignupStateCopyWithImpl<$Res, _$SignupStateImpl>
+    implements _$$SignupStateImplCopyWith<$Res> {
+  __$$SignupStateImplCopyWithImpl(
+      _$SignupStateImpl _value, $Res Function(_$SignupStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -90,8 +92,9 @@ class __$$LoginUserImplCopyWithImpl<$Res>
   $Res call({
     Object? email = null,
     Object? password = null,
+    Object? events = null,
   }) {
-    return _then(_$LoginUserImpl(
+    return _then(_$SignupStateImpl(
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -100,70 +103,79 @@ class __$$LoginUserImplCopyWithImpl<$Res>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
+      events: null == events
+          ? _value._events
+          : events // ignore: cast_nullable_to_non_nullable
+              as List<SignupPageEvent>,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$LoginUserImpl implements _LoginUser {
-  const _$LoginUserImpl({required this.email, required this.password});
 
-  factory _$LoginUserImpl.fromJson(Map<String, dynamic> json) =>
-      _$$LoginUserImplFromJson(json);
+class _$SignupStateImpl implements _SignupState {
+  const _$SignupStateImpl(
+      {this.email = "",
+      this.password = "",
+      final List<SignupPageEvent> events = const []})
+      : _events = events;
 
   @override
+  @JsonKey()
   final String email;
   @override
+  @JsonKey()
   final String password;
+  final List<SignupPageEvent> _events;
+  @override
+  @JsonKey()
+  List<SignupPageEvent> get events {
+    if (_events is EqualUnmodifiableListView) return _events;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_events);
+  }
 
   @override
   String toString() {
-    return 'LoginUser(email: $email, password: $password)';
+    return 'SignupState(email: $email, password: $password, events: $events)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LoginUserImpl &&
+            other is _$SignupStateImpl &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
-                other.password == password));
+                other.password == password) &&
+            const DeepCollectionEquality().equals(other._events, _events));
   }
 
-  @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, email, password);
+  int get hashCode => Object.hash(runtimeType, email, password,
+      const DeepCollectionEquality().hash(_events));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$LoginUserImplCopyWith<_$LoginUserImpl> get copyWith =>
-      __$$LoginUserImplCopyWithImpl<_$LoginUserImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$LoginUserImplToJson(
-      this,
-    );
-  }
+  _$$SignupStateImplCopyWith<_$SignupStateImpl> get copyWith =>
+      __$$SignupStateImplCopyWithImpl<_$SignupStateImpl>(this, _$identity);
 }
 
-abstract class _LoginUser implements LoginUser {
-  const factory _LoginUser(
-      {required final String email,
-      required final String password}) = _$LoginUserImpl;
-
-  factory _LoginUser.fromJson(Map<String, dynamic> json) =
-      _$LoginUserImpl.fromJson;
+abstract class _SignupState implements SignupState {
+  const factory _SignupState(
+      {final String email,
+      final String password,
+      final List<SignupPageEvent> events}) = _$SignupStateImpl;
 
   @override
   String get email;
   @override
   String get password;
   @override
+  List<SignupPageEvent> get events;
+  @override
   @JsonKey(ignore: true)
-  _$$LoginUserImplCopyWith<_$LoginUserImpl> get copyWith =>
+  _$$SignupStateImplCopyWith<_$SignupStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
