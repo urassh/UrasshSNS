@@ -11,6 +11,8 @@ abstract class LoginUser with _$LoginUser {
     required String email,
     required String password,
     required String uid,
+    required DateTime createdAt,
+    required DateTime updatedAt,
   }) = _LoginUser;
 
   factory LoginUser.fromJson(Map<String, dynamic> json) => _$LoginUserFromJson(json);
@@ -25,6 +27,8 @@ abstract class LoginUser with _$LoginUser {
       email: email,
       password: password,
       uid: const Uuid().v4(),
+      createdAt: DateTime.now(),
+      updatedAt: DateTime.now(),
     );
   }
 }

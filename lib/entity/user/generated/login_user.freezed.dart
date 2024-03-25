@@ -24,6 +24,8 @@ mixin _$LoginUser {
   String get email => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
   String get uid => throw _privateConstructorUsedError;
+  DateTime get createdAt => throw _privateConstructorUsedError;
+  DateTime get updatedAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +38,13 @@ abstract class $LoginUserCopyWith<$Res> {
   factory $LoginUserCopyWith(LoginUser value, $Res Function(LoginUser) then) =
       _$LoginUserCopyWithImpl<$Res, LoginUser>;
   @useResult
-  $Res call({String username, String email, String password, String uid});
+  $Res call(
+      {String username,
+      String email,
+      String password,
+      String uid,
+      DateTime createdAt,
+      DateTime updatedAt});
 }
 
 /// @nodoc
@@ -56,6 +64,8 @@ class _$LoginUserCopyWithImpl<$Res, $Val extends LoginUser>
     Object? email = null,
     Object? password = null,
     Object? uid = null,
+    Object? createdAt = null,
+    Object? updatedAt = null,
   }) {
     return _then(_value.copyWith(
       username: null == username
@@ -74,6 +84,14 @@ class _$LoginUserCopyWithImpl<$Res, $Val extends LoginUser>
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
               as String,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      updatedAt: null == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ) as $Val);
   }
 }
@@ -86,7 +104,13 @@ abstract class _$$LoginUserImplCopyWith<$Res>
       __$$LoginUserImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String username, String email, String password, String uid});
+  $Res call(
+      {String username,
+      String email,
+      String password,
+      String uid,
+      DateTime createdAt,
+      DateTime updatedAt});
 }
 
 /// @nodoc
@@ -104,6 +128,8 @@ class __$$LoginUserImplCopyWithImpl<$Res>
     Object? email = null,
     Object? password = null,
     Object? uid = null,
+    Object? createdAt = null,
+    Object? updatedAt = null,
   }) {
     return _then(_$LoginUserImpl(
       username: null == username
@@ -122,6 +148,14 @@ class __$$LoginUserImplCopyWithImpl<$Res>
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
               as String,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      updatedAt: null == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -133,7 +167,9 @@ class _$LoginUserImpl implements _LoginUser {
       {required this.username,
       required this.email,
       required this.password,
-      required this.uid});
+      required this.uid,
+      required this.createdAt,
+      required this.updatedAt});
 
   factory _$LoginUserImpl.fromJson(Map<String, dynamic> json) =>
       _$$LoginUserImplFromJson(json);
@@ -146,10 +182,14 @@ class _$LoginUserImpl implements _LoginUser {
   final String password;
   @override
   final String uid;
+  @override
+  final DateTime createdAt;
+  @override
+  final DateTime updatedAt;
 
   @override
   String toString() {
-    return 'LoginUser(username: $username, email: $email, password: $password, uid: $uid)';
+    return 'LoginUser(username: $username, email: $email, password: $password, uid: $uid, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -162,12 +202,17 @@ class _$LoginUserImpl implements _LoginUser {
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
                 other.password == password) &&
-            (identical(other.uid, uid) || other.uid == uid));
+            (identical(other.uid, uid) || other.uid == uid) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) ||
+                other.updatedAt == updatedAt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, username, email, password, uid);
+  int get hashCode => Object.hash(
+      runtimeType, username, email, password, uid, createdAt, updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -188,7 +233,9 @@ abstract class _LoginUser implements LoginUser {
       {required final String username,
       required final String email,
       required final String password,
-      required final String uid}) = _$LoginUserImpl;
+      required final String uid,
+      required final DateTime createdAt,
+      required final DateTime updatedAt}) = _$LoginUserImpl;
 
   factory _LoginUser.fromJson(Map<String, dynamic> json) =
       _$LoginUserImpl.fromJson;
@@ -201,6 +248,10 @@ abstract class _LoginUser implements LoginUser {
   String get password;
   @override
   String get uid;
+  @override
+  DateTime get createdAt;
+  @override
+  DateTime get updatedAt;
   @override
   @JsonKey(ignore: true)
   _$$LoginUserImplCopyWith<_$LoginUserImpl> get copyWith =>
