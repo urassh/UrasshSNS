@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:urassh_sns/entity/user/login_user.dart';
 import 'package:urassh_sns/entity/user/social_user.dart';
+import 'package:urassh_sns/exception/NotFoundedDataException.dart';
 import 'package:urassh_sns/exception/insert_database_exception.dart';
 import 'package:urassh_sns/exception/signup_auth_exception.dart';
 import 'package:urassh_sns/usecase/user/get_current_user_usecase.dart';
@@ -37,6 +38,8 @@ class SignupViewModel extends HasEventStateNotifier<SignupState> {
     } on InsertDatabaseException catch (e) {
       state = state.copyWith(events: state.events + [SignupPageEvent.failed(e)]);
     } on SignupAuthException catch (e) {
+      state = state.copyWith(events: state.events + [SignupPageEvent.failed(e)]);
+    } on NotFoundedDataException catch (e) {
       state = state.copyWith(events: state.events + [SignupPageEvent.failed(e)]);
     } catch (e) {
       state = state.copyWith(events: state.events + [SignupPageEvent.failed(Exception(e))]);
