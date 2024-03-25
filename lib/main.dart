@@ -44,7 +44,7 @@ class MyHomePage extends StatelessWidget {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text("Urassh SNS"),
       ),
-      body: SignupPage(),
+      body: const SignupPage(),
     );
   }
 }
